@@ -10,6 +10,15 @@ from .appconf import RunnerConf
 
 def maketarget(ghargs):
     "Return target scope for GitHub depending if request is org or repo"
+    rc = values.get("rc")
+    if rc.prefer_target == 'repo':
+        return "/".join(
+            (ghargs.get("owner"), ghargs.get("repo"))
+        )
+
+    if rc.prefer_target == 'org':
+        return ghargs.get("org")
+
     return ghargs.get("org") or "/".join(
         (ghargs.get("owner"), ghargs.get("repo"))
     )

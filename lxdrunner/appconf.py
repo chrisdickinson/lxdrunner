@@ -27,6 +27,7 @@ class RunnerConf(BaseModel):
     name: str
     labels: frozenset
     image: str
+    prefer_target = typing.Literal['repo', 'org']
     profiles: typing.List[str] = ['default']
     runner_os: typing.Literal['linux', 'win', 'osx']
     runner_arch: typing.Literal['x64', 'arm', 'arm64']
